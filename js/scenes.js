@@ -131,6 +131,7 @@ Video.define(({ tl, cue, scene, onFrame, stage }) => {
     `<rect x="50" y="46" width="220" height="290" fill="#fff" stroke="${C.ink}" stroke-width="5"/>` +
     `<circle cx="160" cy="46" r="11" fill="${C.blush}" stroke="${C.ink}" stroke-width="4"/>` +
     `<text x="160" y="110" text-anchor="middle" font-family="Pretendard, sans-serif" font-size="36" font-weight="800" fill="${C.ink}">안내문</text>` +
+    `<rect class="marker" x="76" y="140" width="168" height="20" rx="4" fill="rgba(242,96,76,0.28)"/>` +
     `<path d="M84 150 H236 M84 184 H236 M84 218 H210 M84 252 H236 M84 286 H180" stroke="#B9B2A6" stroke-width="8" stroke-linecap="round"/>` +
     g(404, 256, A.head('me', 106, { brow: 'flat', mouth: 'flat' })));
   paint('#p20 svg.art', 546, 440,
@@ -430,6 +431,7 @@ Video.define(({ tl, cue, scene, onFrame, stage }) => {
   tl.from(th1[0], { y: 18, autoAlpha: 0, duration: 0.4, ease: 'power3.out' }, c11.start - 0.05);
   tl.from(th1[1], { y: 18, autoAlpha: 0, duration: 0.4, ease: 'power3.out' }, at('c11', '우리', -0.1));
   blink('#p16 .eyeball', c11.end + 0.35);
+  cam(P.p16, c11.start - 0.2, c11.duration + 1.4, 1.045, 'sine.inOut');
 
   // ================= c12 · third time =================
   cam(P.p17, c12.start - 0.6, 1.0);
@@ -474,6 +476,9 @@ Video.define(({ tl, cue, scene, onFrame, stage }) => {
   gsap.set('#p21 .head', { rotation: -14 });
   panelIn('p19', avoid[0] - 0.25, { y: 60 });
   tl.to('#p19 .pupil', { x: '+=10', duration: 0.22, repeat: 7, yoyo: true, ease: 'sine.inOut' }, avoid[0] + 0.2);
+  tl.fromTo('#p19 .marker', { autoAlpha: 0, y: 0 }, { autoAlpha: 1, duration: 0.2, immediateRender: false }, avoid[0] + 0.25);
+  tl.to('#p19 .marker', { y: 136, duration: avoid[1] - avoid[0] + 0.6, ease: 'steps(4)' }, avoid[0] + 0.35);
+  tl.to('#p19 .head', { x: -16, rotation: -6, duration: 1.4, ease: 'sine.inOut' }, avoid[0] + 0.2);
   panelIn('p20', avoid[1] - 0.25, { y: 60 });
   tl.to('#p20 .screen', { opacity: 0.6, duration: 0.3, repeat: 3, yoyo: true, ease: 'sine.inOut' }, avoid[1] + 0.2);
   panelIn('p21', avoid[2] - 0.25, { y: 60 });
