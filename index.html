@@ -9,207 +9,158 @@
 </head>
 <body>
   <div id="stage" data-width="1920" data-height="1080">
-    <div class="paper"></div>
 
-    <!-- s01 · hook -->
-    <section class="scene" id="s01">
-      <p class="kicker">회사에서 생각보다 자주 겪는</p>
-      <h1 class="hook">아주 미묘하게<br><em>어색한</em> 순간</h1>
-      <svg class="dots" width="520" height="200" viewBox="0 0 520 200" aria-hidden="true">
-        <circle class="d-me" cx="110" cy="100" r="46"/>
-        <circle class="d-co" cx="410" cy="100" r="46"/>
-      </svg>
-    </section>
+    <!-- One tall webtoon strip; the camera (a transform on #strip) travels down it. Panel rects: js/layout.js -->
+    <section class="scene" id="strip">
 
-    <!-- hall · shared hallway for s02/s03 -->
-    <section class="scene" id="hall">
-      <svg width="1920" height="1080" viewBox="0 0 1920 1080" aria-hidden="true">
-        <g class="doors">
-          <rect x="250" y="560" width="160" height="260" rx="8"/>
-          <circle cx="385" cy="700" r="7"/>
-          <rect x="1510" y="560" width="160" height="260" rx="8"/>
-          <circle cx="1535" cy="700" r="7"/>
-          <rect x="1560" y="500" width="60" height="34" rx="4"/>
-        </g>
-        <path class="floor" d="M96 820 H1824"/>
-        <g class="walker" id="wMe">
-          <rect class="w-body" x="-40" y="-150" width="80" height="150" rx="40"/>
-          <circle class="w-head" cx="0" cy="-200" r="44"/>
-          <g class="w-eyes"><circle cx="-10" cy="-206" r="5.5"/><circle cx="18" cy="-206" r="5.5"/></g>
-          <g class="cup"><rect x="42" y="-104" width="34" height="42" rx="6"/><path d="M76 -95 q16 0 16 12 q0 12 -16 12"/></g>
-          <path class="sweat" d="M58 -262 q12 18 0 27 q-12 -9 0 -27z"/>
-        </g>
-        <g class="walker" id="wCo">
-          <rect class="w-body" x="-40" y="-150" width="80" height="150" rx="40"/>
-          <circle class="w-head" cx="0" cy="-200" r="44"/>
-          <g class="w-eyes"><circle cx="-18" cy="-206" r="5.5"/><circle cx="10" cy="-206" r="5.5"/></g>
-        </g>
-      </svg>
-    </section>
-
-    <!-- s02 · first hello, no problem -->
-    <section class="scene" id="s02">
-      <div class="bubble b-me">안녕하세요</div>
-      <div class="bubble b-co">안녕하세요</div>
-      <svg class="ok-check" width="160" height="120" viewBox="0 0 160 120" aria-hidden="true">
-        <path d="M24 62 L64 100 L136 22"/>
-      </svg>
-      <p class="line-top ok-text">여기까지는 아무 문제도 없다</p>
-    </section>
-
-    <!-- s03 · ten minutes later -->
-    <section class="scene" id="s03">
-      <div class="stamp">10분 뒤</div>
-      <p class="line-top hard-text">행동 하나하나가 <em>어려워진다</em></p>
-    </section>
-
-    <!-- s04 · the dilemma -->
-    <section class="scene" id="s04">
-      <div class="card card-l">
-        <div class="card-head">다시 “안녕하세요”</div>
-        <svg class="card-face" width="220" height="220" viewBox="-110 -110 220 220" aria-hidden="true">
-          <circle class="cf-head" r="84"/>
-          <circle class="cf-eye" cx="-28" cy="-10" r="8"/><circle class="cf-eye" cx="28" cy="-10" r="8"/>
-          <ellipse class="cf-mouth-o" cx="0" cy="36" rx="12" ry="15"/>
-          <text class="cf-q" x="62" y="-58">?</text>
-        </svg>
-        <div class="card-cap">방금 인사한 걸 잊어버린 사람</div>
-        <svg class="nope" width="200" height="200" viewBox="0 0 200 200" aria-hidden="true">
-          <path d="M40 40 L160 160"/><path d="M160 40 L40 160"/>
-        </svg>
+      <!-- title -->
+      <div class="title-block">
+        <p class="kicker">회사에서 생각보다 자주 겪는</p>
+        <h1 class="hook">아주 미묘하게<br><em>어색한</em> 순간</h1>
       </div>
-      <div class="card card-r">
-        <div class="card-head">아무 말 없이</div>
-        <svg class="card-face" width="220" height="220" viewBox="-110 -110 220 220" aria-hidden="true">
-          <circle class="cf-head" r="84"/>
-          <path class="cf-line" d="M-40 -8 H-16 M16 -8 H40"/>
-          <path class="cf-line" d="M-22 38 H22"/>
-          <path class="cf-frost" d="M70 -70 v36 M52 -52 h36 M57 -65 l26 26 M83 -65 l-26 26"/>
-        </svg>
-        <div class="card-cap">갑자기 쌀쌀맞아진 사람</div>
-        <svg class="nope" width="200" height="200" viewBox="0 0 200 200" aria-hidden="true">
-          <path d="M40 40 L160 160"/><path d="M160 40 L40 160"/>
-        </svg>
-      </div>
-    </section>
+      <div class="panel" id="p1"><svg class="art"></svg></div>
 
-    <!-- duo · the two faces, persistent from c07 to the end -->
-    <div id="duo">
-      <svg width="1920" height="1080" viewBox="0 0 1920 1080" aria-hidden="true">
-        <path id="tension" d="M870 600 Q960 600 1050 600"/>
-        <g transform="translate(720 600)">
-          <g class="face" id="fMe">
-            <circle class="f-head" r="150"/>
-            <g class="f-blush"><ellipse cx="-80" cy="40" rx="28" ry="15"/><ellipse cx="80" cy="40" rx="28" ry="15"/></g>
-            <g class="f-eyes"><circle cx="-52" cy="-18" r="16"/><circle cx="52" cy="-18" r="16"/></g>
-            <path class="f-mouth" d="M-44 58 Q0 58 44 58"/>
-          </g>
-          <text class="f-tag" x="0" y="215">나</text>
-        </g>
-        <g transform="translate(1200 600)">
-          <g class="face" id="fCo">
-            <circle class="f-head" r="150"/>
-            <g class="f-blush"><ellipse cx="-80" cy="40" rx="28" ry="15"/><ellipse cx="80" cy="40" rx="28" ry="15"/></g>
-            <g class="f-eyes"><circle cx="-52" cy="-18" r="16"/><circle cx="52" cy="-18" r="16"/></g>
-            <path class="f-mouth" d="M-44 58 Q0 58 44 58"/>
-          </g>
-          <text class="f-tag" x="0" y="215">동료</text>
-        </g>
-      </svg>
-    </div>
+      <!-- c02–c03 · morning -->
+      <div class="panel" id="p3"><svg class="art"></svg>
+        <div class="cap" style="left:24px;top:20px">아침에 복도에서</div>
+      </div>
+      <div class="panel tone" id="p4"><svg class="art"></svg>
+        <div class="balloon tail-bl" style="left:400px;top:62px">안녕하세요</div>
+      </div>
+      <div class="panel tone" id="p5"><svg class="art"></svg>
+        <div class="balloon tail-br" style="left:168px;top:62px">안녕하세요</div>
+      </div>
+      <div class="panel" id="p6"><svg class="art"></svg>
+        <div class="cap big" style="left:40px;top:44px">여기까지는 아무 문제도 없다.</div>
+      </div>
 
-    <!-- s05 · the ambiguous choice -->
-    <section class="scene" id="s05">
-      <p class="line-top choice-text">아주 <em>애매한</em> 선택</p>
-      <div class="steps">
-        <div class="pill">눈을 마주치고</div>
-        <div class="pill">입꼬리를 아주 조금 올리고</div>
-        <div class="pill">고개를 살짝 끄덕인다</div>
+      <!-- c04–c05 · ten minutes later -->
+      <div class="panel" id="p7"><svg class="art"></svg>
+        <div class="cap stamp" data-rot="-4" style="left:24px;top:20px">10분 뒤</div>
+        <div class="sfx" data-rot="-6" style="left:540px;top:52px;font-size:96px">또?!</div>
       </div>
-      <div class="slider">
-        <div class="sl-track"></div>
-        <div class="sl-knob"></div>
-        <div class="sl-label sl-left">정식 인사</div>
-        <div class="sl-label sl-right">무시</div>
+      <div class="panel tone-hot" id="p8"><svg class="art"></svg>
+        <div class="sfx" data-rot="-8" style="left:34px;top:30px;font-size:110px">흠칫</div>
       </div>
-      <p class="line-top face-text">표정으로 말하는 것</p>
-      <div class="thought thought-1">
-        <p class="th-line">네, 저도 압니다.</p>
-        <p class="th-line">우리 아까 인사했습니다.</p>
-        <span class="th-dot th-dot-a"></span><span class="th-dot th-dot-b"></span>
+      <div class="panel" id="p9"><svg class="art"></svg>
+        <div class="cap" style="left:24px;top:20px">행동 하나하나가 <em>어려워진다</em></div>
+        <div class="sfx creak" data-rot="6" style="left:1230px;top:52px;font-size:64px">삐걱</div>
+        <div class="sfx creak" data-rot="-8" style="left:1470px;top:150px;font-size:54px">삐걱</div>
       </div>
-    </section>
 
-    <!-- s06 · third time: looking away -->
-    <section class="scene" id="s06">
-      <p class="line-top worse-text">더 <em>어색해진다</em></p>
-      <p class="line-top almost-text">눈이 마주치기 직전</p>
-      <div class="avoid">
-        <div class="av-card">
-          <svg width="120" height="120" viewBox="0 0 120 120" aria-hidden="true">
-            <rect x="26" y="14" width="68" height="92" rx="6"/>
-            <path d="M40 40 H80 M40 56 H80 M40 72 H66"/>
-            <circle class="pin" cx="60" cy="14" r="7"/>
-          </svg>
-          <div class="av-label">안내문을 유심히</div>
+      <!-- c06 · dilemma (diagonal split) -->
+      <div class="panel split" id="p10">
+        <div class="half half-l"><svg class="art art-l"></svg>
+          <div class="cap" style="left:24px;top:20px">다시 “안녕하세요”</div>
+          <div class="balloon tail-bl" style="left:330px;top:120px">안녕하세요</div>
+          <div class="sfx" data-rot="10" style="left:700px;top:196px;font-size:100px">?</div>
+          <div class="cap" style="left:24px;top:556px">방금 인사한 걸 잊어버린 사람</div>
         </div>
-        <div class="av-card">
-          <svg width="120" height="120" viewBox="0 0 120 120" aria-hidden="true">
-            <rect x="34" y="10" width="52" height="100" rx="10"/>
-            <path d="M52 96 H68"/>
-          </svg>
-          <div class="av-label">휴대폰을 확인</div>
+        <div class="half half-r"><svg class="art art-r"></svg>
+          <div class="cap" style="left:1010px;top:20px">아무 말 없이</div>
+          <div class="sfx" data-rot="-8" style="left:1590px;top:170px;font-size:110px">!</div>
+          <div class="cap" style="left:1000px;top:556px">갑자기 쌀쌀맞아진 사람</div>
         </div>
-        <div class="av-card">
-          <svg width="120" height="120" viewBox="0 0 120 120" aria-hidden="true">
-            <path d="M24 92 C 36 48, 64 30, 96 28"/>
-            <path d="M76 12 L98 28 L78 46"/>
-          </svg>
-          <div class="av-label">괜히 다른 방향</div>
+        <svg class="stamp-x x-l" width="340" height="340" viewBox="0 0 340 340" style="left:250px;top:150px"><path d="M50 50 L290 290"/><path d="M290 50 L50 290"/></svg>
+        <svg class="stamp-x x-r" width="340" height="340" viewBox="0 0 340 340" style="left:1190px;top:150px"><path d="M50 50 L290 290"/><path d="M290 50 L50 290"/></svg>
+      </div>
+
+      <!-- c07–c11 · the ambiguous choice -->
+      <div class="panel" id="p11"><svg class="art"></svg>
+        <div class="cap big" style="left:24px;top:20px">아주 <em>애매한</em> 선택</div>
+        <div class="balloon small tail-bl" style="left:700px;top:24px">…</div>
+        <div class="balloon small tail-br" style="left:880px;top:24px">…</div>
+      </div>
+      <div class="panel" id="p12"><svg class="art"></svg>
+        <div class="cap small" style="left:24px;top:184px">눈을 마주치고</div>
+      </div>
+      <div class="panel" id="p13"><svg class="art"></svg>
+        <div class="cap" style="left:24px;top:322px">입꼬리를 아주 조금 올리고</div>
+      </div>
+      <div class="panel tone" id="p14"><svg class="art"></svg>
+        <div class="cap" style="left:24px;top:20px">고개를 살짝 끄덕인다</div>
+        <div class="sfx" data-rot="8" style="left:610px;top:22px;font-size:68px">끄덕</div>
+      </div>
+      <div class="panel tone" id="p15"><svg class="art"></svg>
+        <div class="g-label g-left">정식 인사</div>
+        <div class="g-label g-right">무시</div>
+      </div>
+      <div class="panel" id="p16"><svg class="art"></svg>
+        <div class="cap big" style="left:24px;top:20px">표정으로 말하는 것</div>
+        <div class="thought" style="left:460px;top:36px;width:800px;height:260px">
+          <p class="th-line">네, 저도 압니다.</p>
+          <p class="th-line">우리 아까 인사했습니다.</p>
+          <span class="th-dot" style="width:30px;height:30px;left:381px;bottom:-54px"></span>
+          <span class="th-dot" style="width:18px;height:18px;left:387px;bottom:-86px"></span>
         </div>
       </div>
-      <p class="pretend-a">분명 서로를 봤는데</p>
-      <p class="pretend-b">서로 못 본 척</p>
-    </section>
 
-    <!-- s07 · the strange tension -->
-    <section class="scene" id="s07">
-      <p class="small-a">아무 잘못도 없고</p>
-      <p class="small-b">사이가 나쁜 것도 아닌데</p>
-      <p class="reason">오늘 너무 여러 번 마주쳤다는<br>이유만으로</p>
-      <p class="tension-label">이상한 긴장감</p>
-    </section>
-
-    <!-- s08 · fourth time: the same thought -->
-    <section class="scene" id="s08">
-      <p class="line-top same-text">둘 다 같은 생각</p>
-      <div class="thought thought-2">
-        <p class="th-line"><em>제발</em> 이번에는</p>
-        <p class="th-line">못 본 척하고 지나가자.</p>
-        <span class="th-dot th-dot-l"></span><span class="th-dot th-dot-r"></span>
+      <!-- c12–c15 · third time -->
+      <div class="panel" id="p17"><svg class="art"></svg>
+        <div class="cap" style="left:24px;top:20px">조금 뒤</div>
+        <div class="sfx" data-rot="-6" style="left:494px;top:14px;font-size:92px">!</div>
+        <div class="sfx" data-rot="6" style="left:1184px;top:14px;font-size:92px">!</div>
+        <div class="display shaky" style="left:0;right:0;top:300px">더 <em>어색해진다</em></div>
       </div>
+      <div class="panel" id="p18"><svg class="art"></svg>
+        <div class="cap small" style="left:24px;top:184px">눈이 마주치기 직전</div>
+        <div class="sfx" data-rot="-10" style="left:770px;top:40px;font-size:96px">휙!</div>
+      </div>
+      <div class="panel" id="p19"><svg class="art"></svg>
+        <div class="cap small" style="left:16px;top:364px">안내문을 유심히</div>
+      </div>
+      <div class="panel tone" id="p20"><svg class="art"></svg>
+        <div class="cap small" style="left:16px;top:16px">휴대폰을 확인</div>
+      </div>
+      <div class="panel" id="p21"><svg class="art"></svg>
+        <div class="cap small" style="left:16px;top:16px">괜히 다른 방향</div>
+      </div>
+      <div class="panel" id="p22"><svg class="art"></svg>
+        <div class="cap" style="left:24px;top:20px">분명 서로를 봤는데</div>
+        <div class="cap big" style="right:24px;top:20px">서로 <em>못 본 척</em></div>
+      </div>
+
+      <!-- c16 · the strange tension -->
+      <div class="panel dark" id="p23"><svg class="art"></svg>
+        <div class="cap" style="left:60px;top:40px">아무 잘못도 없고</div>
+        <div class="cap" style="left:60px;top:112px">사이가 나쁜 것도 아닌데</div>
+        <div class="center-wrap" style="top:40px"><div class="cap big reason">오늘 너무 여러 번 마주쳤다는<br>이유만으로</div></div>
+        <div class="display hot" style="left:0;right:0;top:292px">이상한 긴장감</div>
+      </div>
+
+      <!-- c17–c18 · fourth time -->
+      <div class="panel tone-hot" id="p24"><svg class="art"></svg>
+        <div class="cap big" style="left:24px;top:20px">네 번째쯤</div>
+        <div class="center-wrap" style="top:462px"><div class="cap big">둘 다 같은 생각</div></div>
+      </div>
+      <div class="panel dark" id="p25"><svg class="art"></svg>
+        <div class="thought big" style="left:460px;top:30px;width:800px;height:250px">
+          <p class="th-line"><em>제발</em> 이번에는</p>
+          <p class="th-line">못 본 척하고 지나가자.</p>
+          <span class="th-dot" style="width:30px;height:30px;left:381px;bottom:-52px"></span>
+          <span class="th-dot" style="width:18px;height:18px;left:387px;bottom:-84px"></span>
+        </div>
+        <div class="sfx soft" data-rot="-6" style="left:1190px;top:290px;font-size:60px">휴…</div>
+        <div class="sfx soft" data-rot="6" style="left:400px;top:290px;font-size:60px">휴…</div>
+      </div>
+
       <p class="endcard">복도에서 또 마주쳤다</p>
     </section>
 
-    <!-- HUD · encounter counter + awkwardness meter -->
+    <!-- HUD · encounter counter + awkwardness meter (fixed to the screen, not the strip) -->
     <div id="hud">
-      <div class="hud-count">
+      <div class="hud-box hud-count">
         <div class="hud-label">마주친 횟수</div>
         <div class="count-row">
           <div class="digit-window"><div class="digits"><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span></div></div>
           <div class="count-when"><span>아침</span><span>10분 뒤</span><span>조금 뒤</span><span>네 번째쯤</span></div>
         </div>
       </div>
-      <div class="hud-meter">
+      <div class="hud-box hud-meter">
         <div class="meter-head"><span class="hud-label">어색함</span><span class="meter-val">0%</span></div>
         <div class="meter-track"><div class="meter-fill"></div></div>
       </div>
     </div>
-
-    <svg class="grain" width="1920" height="1080" aria-hidden="true">
-      <filter id="grainF"><feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="3" stitchTiles="stitch"/><feColorMatrix values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.08 0"/></filter>
-      <rect width="100%" height="100%" filter="url(#grainF)"/>
-    </svg>
   </div>
 
   <script src="vendor/gsap/gsap.min.js"></script>
@@ -224,6 +175,8 @@
   <script src="vendor/gsap/ScrambleTextPlugin.min.js"></script>
   <script src="js/cues.js"></script>
   <script src="js/player.js"></script>
+  <script src="js/layout.js"></script>
+  <script src="js/art.js"></script>
   <script src="js/scenes.js"></script>
 </body>
 </html>
