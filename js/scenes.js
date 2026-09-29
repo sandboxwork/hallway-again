@@ -250,7 +250,7 @@ Video.define(({ tl, cue, scene, onFrame, stage }) => {
   gsap.set(whenLabels, { autoAlpha: 0 });
   gsap.set('#hud .digit-window', { transformOrigin: '0% 100%' });
   function counter(nth, pos) {
-    tl.to('#hud .digits', { y: -76 * nth, duration: 0.55, ease: 'back.out(1.7)' }, pos);
+    tl.to('#hud .digits', { y: -76 * nth, duration: 0.45, ease: 'power3.out' }, pos); // no overshoot: the next digit must not peek
     tl.fromTo('#hud .hud-count', { scale: 1 }, { scale: 1.12, duration: 0.14, yoyo: true, repeat: 1, ease: 'power2.out', immediateRender: false }, pos);
     if (nth > 1) tl.to(whenLabels[nth - 2], { autoAlpha: 0, y: -14, duration: 0.25, ease: 'power2.in' }, pos);
     tl.fromTo(whenLabels[nth - 1], { autoAlpha: 0, y: 14 }, { autoAlpha: 1, y: 0, duration: 0.4, ease: 'power3.out', immediateRender: false }, pos + 0.12);
@@ -281,26 +281,27 @@ Video.define(({ tl, cue, scene, onFrame, stage }) => {
   tl.to('#strip .hook em', { x: 8, duration: 0.8, ease: 'awk' }, tAwk1);
 
   // ================= c02 · morning, first hello =================
-  cam(P.p3, c02.start - 0.7, 1.1);
-  panelIn('p3', c02.start - 0.75);
+  cam(P.p3, c02.start - 0.9, 1.0);
+  panelIn('p3', c02.start - 0.95);
   pop('#p3 .cap', c02.start);
   gsap.set('#p3 .person.who-me', { x: -80 });
   gsap.set('#p3 .person.who-co', { x: 1800 });
   lookNow('#p3 .who-me .head', 0.06, 0);
   lookNow('#p3 .who-co .head', -0.06, 0);
   const meet1 = at('c02', '마주쳐');
-  walk('#p3 .person.who-me', 740, c02.start - 0.4, meet1);
-  walk('#p3 .person.who-co', 980, c02.start - 0.4, meet1);
+  walk('#p3 .person.who-me', 740, c02.start - 0.6, meet1);
+  walk('#p3 .person.who-co', 980, c02.start - 0.6, meet1);
+  face('#p3 .head', { brow: 'up', mouth: 'smile' }, meet1 - 0.1, 0.25);
   counter(1, meet1);
 
   const hello = at('c02', '안녕하세요');
-  cam(union('p4', 'p5', 'p6'), hello - 0.75, 0.8);
+  cam(union('p4', 'p5', 'p6'), meet1 + 0.05, 0.75);
   lookNow('#p4 .head', 0.07, 0);
   lookNow('#p5 .head', -0.07, 0);
-  panelIn('p4', hello - 0.55, { x: -60, y: 0 });
-  pop('#p4 .balloon', hello - 0.12);
+  panelIn('p4', meet1 + 0.05, { x: -60, y: 0 });
+  pop('#p4 .balloon', Math.max(hello - 0.12, meet1 + 0.45));
   tl.to('#p4 .head', { rotation: 10, y: 10, duration: 0.28, yoyo: true, repeat: 1, ease: 'power2.out' }, hello);
-  panelIn('p5', hello - 0.2, { x: 60, y: 0 });
+  panelIn('p5', meet1 + 0.3, { x: 60, y: 0 });
   pop('#p5 .balloon', hello + 0.3);
   tl.to('#p5 .head', { rotation: -10, y: 10, duration: 0.28, yoyo: true, repeat: 1, ease: 'power2.out' }, hello + 0.4);
 
